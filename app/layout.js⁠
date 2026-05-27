@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Trần Huy Land | Kho Nhà Đất Chính Châu Cẩm Lệ Đà Nẵng',
-  description: 'Mua bán nhà đất uy tín.',
+  title: 'Trần Huy Land',
+  description: 'Kho Nhà Đất Đà Nẵng',
 };
 
 export default function RootLayout({ children }) {
