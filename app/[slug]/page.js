@@ -1,10 +1,10 @@
 import { getGoogleSheetData } from '../utils';
-import Link from 'next/next';
+import Link from 'next/link';
 
 export async function generateStaticParams() {
   const data = await getGoogleSheetData();
   return data.map((item) => ({
-    slug: item.slug || item.id.toString(),
+    slug: item.slug ? item.slug.toString() : item.id.toString(),
   }));
 }
 
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   
   return {
     title: `${item.tieude} | Trần Huy Land`,
-    description: `Giá bán: ${item.gia}. Diện tích: ${item.dienTich}. Vị trí: ${item.khuVucFull || item.khuVuc}. ${item.moTa?.substring(0, 120)}...`,
+    description: `Giá bán: ${item.gia}. Diện tích: ${item.dienTich}. Vị trí: ${item.khuVucFull || item.khuVuc}.`,
   };
 }
 
@@ -28,7 +28,7 @@ export default async function PropertyDetail({ params }) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
         <h2 className="text-xl font-bold text-slate-800">Không tìm thấy thông tin nhà đất này.</h2>
-        <a href="/" className="mt-4 inline-block bg-slate-900 text-white px-6 py-2 rounded-xl font-bold">Quay lại trang chính</a>
+        <Link href="/" className="mt-4 inline-block bg-slate-900 text-white px-6 py-2 rounded-xl font-bold">Quay lại trang chính</Link>
       </div>
     );
   }
@@ -38,9 +38,9 @@ export default async function PropertyDetail({ params }) {
   return (
     <div className="max-w-3xl mx-auto w-full bg-white min-h-screen shadow-md flex flex-col">
       <div className="p-4 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-md z-50">
-        <a href="/" className="text-slate-600 font-bold flex items-center gap-1 text-sm bg-slate-100 px-3 py-2 rounded-xl">
+        <Link href="/" className="text-slate-600 font-bold flex items-center gap-1 text-sm bg-slate-100 px-3 py-2 rounded-xl">
           ← Quay Lại Danh Sách
-        </a>
+        </Link>
         <strong className="text-slate-900 text-sm tracking-tight uppercase">Chi Tiết Tài Sản</strong>
         <div className="w-20"></div>
       </div>
